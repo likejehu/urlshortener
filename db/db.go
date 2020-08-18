@@ -47,12 +47,12 @@ func (r *RedisStore) Set(key string, value *models.MineURL) error {
 // Exists checks if the specified key is in use
 // Returns false when an error occurs.
 func (r *RedisStore) Exists(key string) (bool, error) {
-	exists, err := r.client.Exists(key).Result()
+	_, err := r.client.Exists(key).Result()
 	if err != nil {
 		return false, err
 	}
 
-	return exists == 1, nil
+	return true, nil
 }
 
 // NewRedisStore returns a new Store Instance
